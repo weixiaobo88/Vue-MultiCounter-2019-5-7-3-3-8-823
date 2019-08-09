@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <counter-group :counter-num="counterNum" @show-current="updateSum" />
+    <counter-sum :sum="sum"  />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CounterGroup from './components/CounterGroup.vue'
+import CounterSum from './components/CounterSum.vue'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      counterNum: 3,
+      sum: 0
+    }
+  },
   components: {
-    HelloWorld
+    CounterGroup,
+    CounterSum
+  },
+  methods: {
+    updateSum(current) {
+        this.sum += current;
+    }
   }
 }
 </script>
